@@ -44,9 +44,31 @@
           label = "HOMEROW_MODS";
           #binding-cells = <2>;
           tapping-term-ms = <200>;
-          quick_tap_ms = <175>;
-          flavor = "tap-preferred";
+          quick-tap-ms = <175>;
+          flavor = "balanced";
           bindings = <&kp>, <&kp>;
+      };
+
+      hm_l: homerow_mods_left {
+          compatible = "zmk,behavior-hold-tap";
+          label = "HOMEROW_MODS_LEFT";
+          #binding-cells = <2>;
+          tapping-term-ms = <200>;
+          quick-tap-ms = <175>;
+          flavor = "balanced";
+          bindings = <&kp>, <&kp>;
+          hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
+      };
+
+      hm_r: homerow_mods_right {
+          compatible = "zmk,behavior-hold-tap";
+          label = "HOMEROW_MODS_RIGHT";
+          #binding-cells = <2>;
+          tapping-term-ms = <200>;
+          quick-tap-ms = <175>;
+          flavor = "balanced";
+          bindings = <&kp>, <&kp>;
+          hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
       };
     };
 
@@ -55,22 +77,84 @@
 
     default_layer {
       bindings = <
-        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo 2
+        &kp ESC   &kp N1          &kp N2   &kp N3   &kp N4     &kp N5 &tog KEYPAD                                                           &mo MOD &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
+        ___       &kp Q           &kp W    &kp E    &kp R      &kp T  &to MACOS                                                             &none   &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
+        &kp CAPS  &kp A           &kp S    &kp D    &kp F      &kp G  &to WINDOWS     &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL                &none   &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
+        &kp LSHFT &kp Z           &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                                  &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+        &mo FN    &kp GRAVE       &kp CAPS &kp LEFT &kp RIGHT         &lt EXTEND LGUI &kp BSPC  &kp END  &kp PG_DN &lt TEXT ENTER &lt SYMBOL SPACE         &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo FN
       >;
     };
+
+    extend_layer {
+      bindings = <
+        ___            &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4)    &kp LG(N5)     ___                                    ___             &kp LG(N6)     &kp LG(N7)     &kp LG(N8)    &kp LG(N9)   &kp LG(N0)   &kp LG(LS(P))
+        ___            ___        ___        &kp LG(Z)  &kp LG(LS(Z)) &kp LA(LS(N4)) ___                                    &kp LA(LS(N5))  &kp LA(LS(N3)) &kp LG(Z)      &kp LG(LS(Z)) &kp LG(O)    &kp LG(P)    ___
+        ___            &sl APP    &sl SYS    &sl TEXT   &sl SYMBOL    ___            ___         ___ ___ ___ ___            ___             ___            &kp LG(J)      &sk TAB       &kp LG(L)    &sl APP      ___
+        &kp LG(LSHIFT) ___        &kp LG(X)  &kp LG(C)  &kp LG(V)     ___                            ___ ___                                ___            &kp LG(M)      &kp LG(COMMA) &kp LG(DOT)  ___          ___
+        ___            ___        ___        ___        ___                                 ___ ___  ___ ___  ___ &kp ESC                                  ___            ___           ___          ___          ___
+      >;
+    };
+
+    app_layer {
+      bindings = <
+        ___            ___        ___        ___        ___           ___            ___                                    ___             ___            ___            ___           ___          ___           ___
+        ___            &kp LA(Q)  &kp LA(W)  &kp LA(E)  &kp LA(R)     &kp LA(T)      ___                                    ___             &kp LA(Y)      &kp LA(U)      &kp LA(I)     &kp LA(O)    &kp LA(P)     &kp LA(BSLH)
+        ___            &kp LA(A)  &kp LA(S)  &kp LA(D)  &kp LA(F)     &kp LA(G)      ___         ___ ___ ___ ___            ___             &kp LA(H)      &kp LA(J)      &kp LA(K)     &kp LA(L)    &kp LA(COLON) &kp LA(FSLH)
+        ___            &kp LA(Z)  &kp LA(X)  &kp LA(C)  &kp LA(V)     &kp LA(B)                      ___ ___                                &kp LA(N)      &kp LA(M)      &kp LA(COMMA) &kp LA(DOT)  &kp LA(SLASH) ___
+        ___            ___        ___        ___        ___                                 ___ ___  ___ ___  ___ ___                                      ___            ___           ___          ___           ___
+      >;
+    };
+
+    sys_layer {
+      bindings = <
+        ___            ___        ___        ___        ___           ___            ___                                    ___             ___            ___            ___           ___          ___           ___
+        ___            &kp LG(Q)  &kp LG(W)  &kp LG(E)  &kp LG(R)     &kp LG(T)      ___                                    ___             &kp LG(Y)      &kp LG(U)      &kp LG(I)     &kp LG(O)    &kp LG(P)     &kp LG(BSLH)
+        ___            &kp LG(A)  &kp LG(S)  &kp LG(D)  &kp LG(F)     &kp LG(G)      ___         ___ ___ ___ ___            ___             &kp LG(H)      &kp LG(J)      &kp LG(K)     &kp LG(L)    &kp LG(COLON) &kp LG(FSLH)
+        ___            &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)     &kp LG(B)                      ___ ___                                &kp LG(N)      &kp LG(M)      &kp LG(COMMA) &kp LG(DOT)  &kp LG(SLASH) ___
+        ___            ___        ___        ___        ___                                 ___ ___  ___ ___  ___ ___                                      ___            ___           ___          ___           ___
+      >;
+    };
+
+    symbol_layer {
+      bindings = <
+        ___            ___            ___             ___             ___       ___            ___                                    ___             ___            ___            ___           ___              ___           ___
+        ___            ___            &kp UNDER       &mt LA(E) LBKT  &kp RBKT  &kp CARET      ___                                    ___             &kp EXCL       &mt LA(U) LT   &kp GT        &mt LA(O) EQUAL  &kp AMPS      ___ 
+        ___            &mt LA(A) BSLH &mt LA(S) FSLH  &kp LBRC        &kp RBRC  &kp STAR       ___         ___ ___ ___ ___            ___             &kp QMARK      &kp LPAR       &kp RPAR      &kp MINUS        &kp COLON     &kp AT 
+        ___            &kp HASH       &kp DOLLAR      &kp PIPE        &kp TILDE &kp GRAVE                      ___ ___                                &kp PLUS       &kp PERCENT    &kp DQT       &kp SQT          &kp SEMI      ___
+        ___            ___            ___             ___             ___                             ___ ___  ___ ___  ___ ___                                      ___            ___           ___              ___           ___
+      >;
+    };
+
+    text_layer {
+      bindings = <
+        ___            ___            ___             ___             ___            ___            ___                                    ___             ___            ___            ___           ___              ___      ___
+        ___            ___            ___             &kp END         ___            ___            ___                                    ___             &kp LC(K)      &kp LG(BSPC)   &kp UP        &kp BSPC         ___      ___ 
+        ___            &kp HOME       ___             &kp LA(DELETE)  &kp LA(RIGHT)  ___            ___         ___ ___ ___ ___            ___             &kp LA(BSPC)   &kp LEFT       &kp DOWN      &kp RIGHT        ___      ___
+        ___            ___            ___             ___             ___            &kp LA(LEFT)                   ___ ___                                ___            &kp RET        &kp TAB       &kp LS(TAB)      ___      ___
+        ___            ___            ___             ___             ___                                  ___ ___  ___ ___  ___ ___                                      ___            ___           ___              ___      ___
+      >;
+    };
+
+    windows {
+      bindings = <
+        &kp ESC   &kp N1    &kp N2   &kp N3   &mt L N4    &kp N5 &tog KEYPAD                                                         &mo MOD &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
+        &kp TAB   &kp Q     &kp W    &kp E    &kp R       &kp T  &to MACOS                                                           &none   &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
+        &kp ESC   &kp A     &kp S    &kp D    &kp F       &kp G  &to WINDOWS     &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL              &none   &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
+        &kp LSHFT &kp Z     &kp X    &kp C    &mt V I     &kp B                            &kp HOME &kp PG_UP                                &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+        &mo FN    &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                 &kp BSPC &mt P DEL &kp END  &kp PG_DN &kp ENTER &kp SPACE                   &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo FN
+      >;
+    };
+
     keypad {
       bindings = <
-        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &trans                                                           &mo 3 &kp N6 &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0              &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        &mo 2
+        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &trans                                                           &mo MOD &kp N6 &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
+        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none   &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
+        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none   &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
+        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                             &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
+        &mo FN    &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0                &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        &mo 2
       >;
     };
+
     fn {
       bindings = <
         &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &tog 1                                           &mo 3 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
@@ -80,6 +164,7 @@
         &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans              &trans &trans &trans  &trans  &trans
       >;
     };
+
     mod {
       bindings = <
         &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none                                                                     &trans                 &none        &none        &none        &none &none &none
