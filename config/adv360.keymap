@@ -132,7 +132,7 @@
       bindings = <
         ___            ___            ___             ___             ___            ___                    ___                                    ___             ___            ___            ___           ___              ___      ___
         ___            ___            ___             &kp END         ___            &kp LG(LC(LA(LS(T))))  ___                                    ___             &kp LC(K)      &kp LG(BSPC)   &kp UP        ___              ___      ___ 
-        ___            &kp HOME       ___             &kp LA(DELETE)  &kp LA(RIGHT)  ___                    ___         ___ ___ ___ ___            ___             &kp LA(BSPC)   &kp LEFT       &kp DOWN      &kp RIGHT        ___      ___
+        ___            &kp HOME       &kp LA(BSPC)    &kp LA(DELETE)  &kp LA(RIGHT)  ___                    ___         ___ ___ ___ ___            ___             ___            &kp LEFT       &kp DOWN      &kp RIGHT        ___      ___
         ___            ___            ___             ___             ___            &kp LA(LEFT)                           ___ ___                                ___            &kp RET        &kp TAB       &kp LS(TAB)      ___      ___
         ___            ___            ___             ___             ___                                          ___ ___  ___ ___  ___ &kp BSPC                    ___            ___           ___              ___      ___
       >;
