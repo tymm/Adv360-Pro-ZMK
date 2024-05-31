@@ -12,10 +12,11 @@
 #define SYS 3
 #define SYMBOL 4
 #define TEXT 5
-#define WINDOWS 6
-#define KEYPAD 7
-#define FN 8
-#define MOD 9
+#define NUMBER 6
+#define WINDOWS 7
+#define KEYPAD 8
+#define FN 9
+#define MOD 10
 
 #define KEYS_LEFT 0 1 2 3 4 5 6 \
                   14 15 16 17 18 19 20 \
@@ -80,6 +81,7 @@
           tapping-term-ms = <200>;
           bindings = <&kp LA(D)>, <&kp LA(LS(D))>, <&kp LG(LA(LS(D)))>;
       };
+      
     };
 
   keymap {
@@ -90,7 +92,7 @@
         &kp ESC   &kp N1          &kp N2         &kp N3          &kp N4             &kp N5 &tog KEYPAD                                                           &mo MOD &kp N6 &kp N7          &kp N8           &kp N9        &kp N0    &kp MINUS
         ___       &kp Q           &kp W          &kp E           &kp R              &kp T  &to MACOS                                                             &none   &kp Y  &kp U           &kp I            &kp O         &kp P     &kp BSLH
         &kp LSHFT &hm_l APP A     &hm_l SYS S    &hm_l TEXT D    &hm_l SYMBOL F     &kp G  &to WINDOWS     &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL                &none   &kp H  &kp J           &kp K            &kp L         &hm_r APP SEMI  &kp SQT
-        &kp LSHFT &kp Z           &kp X          &kp C           &kp V              &kp B                            &kp HOME &kp PG_UP                                  &kp N  &hm_r SYMBOL M  &hm_r TEXT COMMA &hm_r SYS DOT &hm_r APP FSLH  &kp RSHFT
+        &kp LSHFT &kp Z           &kp X          &kp C           &hm_l NUMBER V     &kp B                            &kp HOME &kp PG_UP                                  &kp N  &hm_r SYMBOL M  &hm_r TEXT COMMA &hm_r SYS DOT &hm_r APP FSLH  &kp RSHFT
         &mo FN    &kp GRAVE       &kp CAPS       &kp LEFT        &kp RIGHT                &lt EXTEND LGUI &sk LSHFT  &kp END  &kp PG_DN &mt LCTRL ENTER &kp SPACE               &kp BSPC        &kp DOWN         &kp LBKT      &kp RBKT  &mo FN
       >;
     };
@@ -142,6 +144,16 @@
         ___            &kp HOME       &kp LA(BSPC)    &kp LA(DELETE)  &kp LA(RIGHT)  ___                    ___         ___ ___ ___ ___            ___             ___            &kp LEFT       &kp DOWN      &kp RIGHT        ___      ___
         ___            ___            ___             ___             ___            &kp LA(LEFT)                           ___ ___                                ___            &kp RET        &kp TAB       &kp LS(TAB)      ___      ___
         ___            ___            ___             ___             ___                                          ___ ___  ___ ___  ___ &kp BSPC                    ___            ___           ___              ___      ___
+      >;
+    };
+
+    number_layer {
+      bindings = <
+        &trans &trans &trans &trans &trans &trans  &none                                           &none &trans    &trans    &trans    &trans     &trans  &trans
+        &trans &trans &trans &trans &trans &trans  &none                                           &none &trans    &kp KP_N7 &kp KP_N8 &kp KP_N9  &trans  &trans
+        &trans &trans &trans &trans &trans &trans  &none        &trans &trans &trans &trans        &none &trans    &kp KP_N4 &kp KP_N5 &kp KP_N6  &trans  &trans
+        &trans &trans &trans &trans &trans &trans                      &trans &trans                     &trans    &kp KP_N1 &kp KP_N2 &kp KP_N3  &trans  &trans
+        &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &kp KP_N0              &trans    &trans    &trans     &trans  &trans
       >;
     };
 
