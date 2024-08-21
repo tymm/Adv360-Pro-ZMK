@@ -7,6 +7,9 @@
 
 #define ___ &trans
 
+#define HM_TAPPING_TERM 300
+#define HM_PRIOR_IDLE 150
+
 #define MACOS 0
 #define EXTEND 1
 #define APP 2
@@ -56,24 +59,26 @@
           compatible = "zmk,behavior-hold-tap";
           label = "HOMEROW_MODS_LEFT";
           #binding-cells = <2>;
-          tapping-term-ms = <200>;
+          tapping-term-ms = <HM_TAPPING_TERM>;
           quick-tap-ms = <175>;
-          require-prior-idle-ms = <125>;
+          require-prior-idle-ms = <HM_PRIOR_IDLE>;
           flavor = "balanced";
           bindings = <&mo>, <&kp>;
           hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
+          hold-trigger-on-release;
       };
 
       hm_r: homerow_mods_right {
           compatible = "zmk,behavior-hold-tap";
           label = "HOMEROW_MODS_RIGHT";
           #binding-cells = <2>;
-          tapping-term-ms = <200>;
+          tapping-term-ms = <HM_TAPPING_TERM>;
           quick-tap-ms = <175>;
-          require-prior-idle-ms = <125>;
+          require-prior-idle-ms = <HM_PRIOR_IDLE>;
           flavor = "balanced";
           bindings = <&mo>, <&kp>;
           hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
+          hold-trigger-on-release;
       };
 
       td0: tap_dance_0 {
