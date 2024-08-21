@@ -3,6 +3,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/backlight.h>
+#include <behaviors/num_word.dtsi>
 
 #define ___ &trans
 
@@ -12,7 +13,7 @@
 #define SYS 3
 #define SYMBOL 4
 #define TEXT 5
-#define NUMBER 6
+#define NUM 6
 #define WINDOWS 7
 #define KEYPAD 8
 #define FN 9
@@ -92,8 +93,8 @@
         &kp ESC   &kp N1          &kp N2         &kp N3          &kp N4             &kp N5 &tog KEYPAD                                                           &mo MOD &kp N6 &kp N7          &kp N8           &kp N9        &kp N0    &kp MINUS
         ___       &kp Q           &kp W          &kp E           &kp R              &kp T  &to MACOS                                                             &none   &kp Y  &kp U           &kp I            &kp O         &kp P     &kp BSLH
         &kp LSHFT &hm_l SYMBOL A  &hm_l SYS S    &hm_l TEXT D    &hm_l APP F        &kp G  &to WINDOWS     &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL                &none   &kp H  &kp J           &kp K            &kp L         &hm_r SYMBOL SEMI  &kp SQT
-        &kp LSHFT &kp Z           &kp X          &kp C           &hm_l NUMBER V     &kp B                            &kp HOME &kp PG_UP                                  &kp N  &hm_r APP M     &hm_r TEXT COMMA &hm_r SYS DOT &hm_r SYMBOL FSLH  &kp RSHFT
-        &mo FN    &kp GRAVE       &kp CAPS       &kp LEFT        &kp RIGHT                &lt EXTEND LGUI &sk LSHFT  &kp END  &kp PG_DN &mt LCTRL ENTER &kp SPACE               &kp BSPC        &kp DOWN         &kp LBKT      &kp RBKT  &mo FN
+        &kp LSHFT &kp Z           &kp X          &kp C           &hm_l NUM V        &kp B                            &kp HOME &kp PG_UP                                  &kp N  &hm_r APP M     &hm_r TEXT COMMA &hm_r SYS DOT &hm_r SYMBOL FSLH  &kp RSHFT
+        &mo FN    &kp GRAVE       &kp CAPS       &kp LEFT        &kp RIGHT                &lt EXTEND LGUI &sk LSHFT  &num_word NUM &kp PG_DN &mt LCTRL ENTER &kp SPACE   &kp BSPC        &kp DOWN         &kp LBKT      &kp RBKT  &mo FN
       >;
     };
 
@@ -147,7 +148,7 @@
       >;
     };
 
-    number_layer {
+    num_layer {
       bindings = <
         &trans &trans &trans &trans &trans &trans  &none                                           &none &trans    &trans    &trans    &trans     &trans  &trans
         &trans &trans &trans &trans &trans &trans  &none                                           &none &trans    &kp KP_N7 &kp KP_N8 &kp KP_N9  &trans  &trans
