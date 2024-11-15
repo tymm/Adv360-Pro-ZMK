@@ -12,16 +12,15 @@
 #define HM_PRIOR_IDLE 150
 
 #define MACOS 0
-#define EXTEND 1
-#define APP 2
-#define SYS 3
-#define SYMBOL 4
-#define TEXT 5
-#define NUM 6
-#define WINDOWS 7
-#define KEYPAD 8
-#define FN 9
-#define MOD 10
+#define APP 1
+#define SYS 2
+#define SYMBOL 3
+#define TEXT 4
+#define NUM 5
+#define WINDOWS 6
+#define KEYPAD 7
+#define FN 8
+#define MOD 9
 
 #define KEYS_LEFT 0 1 2 3 4 5 6 \
                   14 15 16 17 18 19 20 \
@@ -129,19 +128,9 @@
       bindings = <
         &kp ESC   &kp N1          &kp N2         &kp N3          &kp N4             &kp N5 &to MACOS                                                             &mo MOD      &kp N6 &kp N7          &kp N8             &kp N9           &kp N0    &kp MINUS
         ___       &kp Q           &kp W          &kp E           &kp R              &kp T  &to WINDOWS                                                           &none        &kp Y  &kp U           &kp I              &kp O            &kp P     &kp BSLH
-        &kp LSHFT &hm_l SYS A     &kp S          &hm_l EXTEND D  &hm_l APP F        &kp G  &kp DEL         &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL                &kp BSPC     &kp H  &kp J           &kp K              &kp L            &hm_r SYS SEMI  &kp SQT
-        &kp LSHFT &kp Z           &kp X          &kp C           &hm_l NUM V        &kp B                            &kp HOME &kp PG_UP                                       &kp N  &hm_r APP M     &hm_r EXTEND COMMA &kp DOT          &kp FSLH  &kp RSHFT
+        &kp LSHFT &kp A           &kp S          &hm_l SYS D     &hm_l APP F        &kp G  &kp DEL         &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL                &kp BSPC     &kp H  &kp J           &kp K              &kp L            &hm_r SYS SEMI  &kp SQT
+        &kp LSHFT &kp Z           &kp X          &kp C           &hm_l NUM V        &kp B                            &kp HOME &kp PG_UP                                       &kp N  &hm_r APP M     &hm_r SYS COMMA    &kp DOT          &kp FSLH  &kp RSHFT
         &mo FN    &kp GRAVE       &kp CAPS       &kp LEFT        &kp RIGHT                 &lt TEXT LGUI  &kp LSHIFT &num_word NUM &kp PG_DN &mt LCTRL ENTER &lt SYMBOL SPACE &kp BSPC        &kp DOWN         &kp LBKT      &kp RBKT  &mo FN
-      >;
-    };
-
-    extend_layer {
-      bindings = <
-        ___            &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4)    &kp LG(N5)     ___                                    ___             &kp LG(N6)     &kp LG(N7)     &kp LG(N8)    &kp LG(N9)   &kp LG(N0)   &kp LG(LS(P))
-        ___            ___        ___        &kp LG(Z)  &kp LG(LS(Z)) &kp LA(LS(N4)) ___                                    &kp LA(LS(N5))  &kp LA(LS(N3)) &kp LG(Z)      &kp LG(LS(Z)) &kp LG(O)    &kp LG(P)    ___
-        ___            ___        ___        ___        ___           ___            ___         ___ ___ ___ ___            ___             ___            &kp LG(J)      &sk TAB       &kp LG(L)    &sl APP      ___
-        &kp LG(LSHIFT) ___        ___        ___        ___           ___                            ___ ___                                ___            &kp LG(M)      &kp LG(COMMA) &kp LG(DOT)  ___          ___
-        ___            ___        ___        ___        ___                                 ___ ___  ___ ___  ___ &kp ESC                                  ___            ___           ___          ___          ___
       >;
     };
 
@@ -157,11 +146,11 @@
 
     sys_layer {
       bindings = <
-        ___            ___        ___        ___        ___           ___            ___                                    ___             ___            ___            ___           ___          ___           ___
-        ___            &kp LG(Q)  &kp LG(W)  &kp LG(E)  &kp LG(R)     ___            ___                                    ___             &kp LG(Y)      &kp LG(U)      &kp LG(I)     &kp LG(O)    &kp LG(P)     &kp LG(BSLH)
-        ___            &kp LG(A)  &kp LG(S)  &kp LG(D)  &kp LG(F)     &kp LG(G)      ___         ___ ___ ___ ___            ___             &kp LG(H)      &kp LG(J)      &kp LG(K)     &kp LG(L)    &kp LG(COLON) &kp LG(FSLH)
-        ___            &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)     &kp LG(B)                      ___ ___                                &kp LG(N)      &kp LG(M)      &kp LG(COMMA) &kp LG(DOT)  &kp LG(SLASH) ___
-        ___            ___        ___        ___        ___                                 ___ ___  ___ ___  ___ ___                                      ___            ___           ___          ___           ___
+        ___            &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4)    &kp LG(N5)     ___                                           ___             &kp LG(N6)     &kp LG(N7)     &kp LG(N8)    &kp LG(N9)   &kp LG(N0)    &kp LG(LS(P))
+        ___            &kp LG(Q)  &kp LG(W)  &kp LG(E)  &kp LG(R)     &kp LG(T)      &kp LA(LS(N3))                                ___             &kp LG(Y)      &kp LG(U)      &kp LG(I)     &kp LG(O)    &kp LG(P)     &kp LG(BSLH)
+        ___            &kp LG(A)  &kp LG(S)  &kp LG(D)  &kp LG(F)     &kp LG(G)      &kp LA(LS(N4))         ___ ___ ___ ___        &kp LA(LS(N5))  &kp LG(H)      &kp LG(J)      &kp LG(K)     &kp LG(L)    &kp LG(COLON) &kp LG(FSLH)
+        ___            &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)     &kp LG(B)                                 ___ ___                            &kp LG(N)      &kp LG(M)      &kp LG(COMMA) &kp LG(DOT)  &kp LG(SLASH) ___
+        ___            ___        ___        ___        ___                                            ___ ___  ___ ___  ___ ___                                  ___            ___           ___          ___           ___
       >;
     };
 
