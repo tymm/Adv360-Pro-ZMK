@@ -167,7 +167,7 @@
     text_layer {
       bindings = <
         ___            &kp LG(N1)     &kp LG(N2)      &kp LG(N3)      &kp LG(N4)     &kp LG(N5)             ___                                    ___             &kp LG(N6)     &kp LG(N7)     &kp LG(N8)    &kp LG(N9)       &kp LG(N0)   &kp LG(LS(P))
-        ___            ___            ___             &kp END         ___            &kp LG(LC(LA(LS(T))))  ___                                    ___             &kp LC(K)      &kp LG(BSPC)   &kp UP        &kp LG(O)        ___      ___ 
+        ___            ___            ___             &kp END         &kp LC(R)      &kp LG(LC(LA(LS(T))))  ___                                    ___             &kp LC(K)      &kp LG(BSPC)   &kp UP        &kp LG(O)        ___      ___ 
         ___            &kp HOME       &kp LA(BSPC)    &kp LA(DELETE)  &kp LA(RIGHT)  ___                    ___         ___ ___ ___ ___            ___             ___            &kp LEFT       &kp DOWN      &kp RIGHT        ___      ___
         ___            ___            &kp LG(X)       &kp LG(C)       &kp LG(V)      &kp LA(LEFT)                           ___ ___                                ___            &kp BSPC       &kp TAB       &kp LS(TAB)      ___      ___
         ___            ___            ___             ___             ___                                          ___ ___  ___ ___  &kp ENTER &kp ESC             ___            ___           ___              ___      ___
