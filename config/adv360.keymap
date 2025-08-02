@@ -12,6 +12,9 @@
 #define HM_TAPPING_TERM_FAST 200
 #define HM_PRIOR_IDLE 150
 
+#define UMLAUT_TAPPING_TERM 350
+#define UMLAUT_QUICK_TAP 175
+
 #define MACOS 0
 #define APP 1
 #define SYS 2
@@ -22,6 +25,7 @@
 #define KEYPAD 7
 #define FN 8
 #define MOD 9
+#define ALFRED 10
 
 #define KEYS_LEFT 0 1 2 3 4 5 6 \
                   14 15 16 17 18 19 20 \
@@ -44,6 +48,33 @@
 #define THUMBS THUMBS_LEFT THUMBS_RIGHT
 
 / {
+    macros {
+        umlaut_x: umlaut_x {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings =
+                <&kp LA(U)>,
+                <&macro_param_1to1>,
+                <&kp MACRO_PLACEHOLDER>;
+        };
+
+        delete_word: delete_word {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = 
+                <&kp LA(BSPC)>,
+                <&kp LA(DEL)>;
+        };
+
+        select_word: select_word {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = 
+                <&kp LA(LEFT)>,
+                <&kp LA(LS(RIGHT))>;
+        };
+    };
+
     behaviors {
       #include "macros.dtsi"
       #include "version.dtsi"
@@ -111,7 +142,67 @@
           tapping-term-ms = <200>;
           bindings = <&kp LA(D)>, <&kp LA(LS(D))>, <&kp LG(LA(LS(D)))>;
       };
-      
+
+      umlaut_ae: umlaut_ae {
+          compatible = "zmk,behavior-mod-morph";
+          #binding-cells = <0>;
+          bindings = <&umlaut_x A>, <&umlaut_x LS(A)>;
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+          keep-mods = <0>;
+      };
+
+      umlaut_tap_ae: umlaut_tap_ae {
+          compatible = "zmk,behavior-hold-tap";
+          #binding-cells = <2>;
+          tapping-term-ms = <UMLAUT_TAPPING_TERM>;
+          quick-tap-ms = <UMLAUT_QUICK_TAP>;
+          flavor = "tap-preferred";
+          bindings = <&umlaut_ae>, <&kp>;
+      };
+
+      umlaut_ue: umlaut_ue {
+          compatible = "zmk,behavior-mod-morph";
+          #binding-cells = <0>;
+          bindings = <&umlaut_x U>, <&umlaut_x LS(U)>;
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+          keep-mods = <0>;
+      };
+
+      umlaut_tap_ue: umlaut_tap_ue {
+          compatible = "zmk,behavior-hold-tap";
+          #binding-cells = <2>;
+          tapping-term-ms = <UMLAUT_TAPPING_TERM>;
+          quick-tap-ms = <UMLAUT_QUICK_TAP>;
+          flavor = "tap-preferred";
+          bindings = <&umlaut_ue>, <&kp>;
+      };
+
+      umlaut_oe: umlaut_oe {
+          compatible = "zmk,behavior-mod-morph";
+          #binding-cells = <0>;
+          bindings = <&umlaut_x O>, <&umlaut_x LS(O)>;
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+          keep-mods = <0>;
+      };
+
+      umlaut_tap_oe: umlaut_tap_oe {
+          compatible = "zmk,behavior-hold-tap";
+          #binding-cells = <2>;
+          tapping-term-ms = <UMLAUT_TAPPING_TERM>;
+          quick-tap-ms = <UMLAUT_QUICK_TAP>;
+          flavor = "tap-preferred";
+          bindings = <&umlaut_oe>, <&kp>;
+      };
+
+      // Custom mod-tap with your timing
+      cmt: custom_mod_tap {
+          compatible = "zmk,behavior-hold-tap";
+          #binding-cells = <2>;
+          tapping-term-ms = <UMLAUT_TAPPING_TERM>;
+          quick-tap-ms = <UMLAUT_QUICK_TAP>;
+          flavor = "tap-preferred";
+          bindings = <&kp>, <&kp>;
+      };
     };
 
   keymap {
@@ -120,11 +211,11 @@
     default_layer {
       display-name = "Base";
       bindings = <
-        &kp ESC   &kp N1          &kp N2         &kp N3          &kp N4             &kp N5 &tog WINDOWS                                                          &mo MOD      &kp N6 &kp N7          &kp N8             &kp N9           &kp N0    &kp MINUS
-        ___       &kp Q           &kp W          &kp E           &kp R              &kp T  &none                                                                 &none        &kp Y  &kp U           &kp I              &kp O            &kp P     &kp BSLH
-        &kp TAB   &kp A           &kp S          &hm_l SYS D     &hm_l APP F        &kp G  &kp TAB         &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL                &kp BSPC     &kp H  &kp J           &kp K              &kp L            &hm_r SYS SEMI  &kp SQT
-        &kp LSHFT &kp Z           &kp X          &kp C           &hm_l NUM V        &kp B                            &kp HOME &kp PG_UP                                       &kp N  &hm_r APP M     &hm_r SYS COMMA    &kp DOT          &kp FSLH  &kp RSHFT
-        &mo FN    &kp GRAVE       &kp CAPS       &kp LEFT        &kp RIGHT                 &lt TEXT BSPC  &kp LSHIFT &none    &kp PG_DN &mt LCTRL ENTER &lt SYMBOL SPACE &kp BSPC        &kp DOWN         &kp LBKT      &kp RBKT  &mo FN
+        &kp ESC   &kp N1              &kp N2          &kp N3             &kp N4             &kp N5  &tog WINDOWS                                                          &mo MOD      &kp N6  &kp N7              &kp N8            &kp N9              &kp N0    &kp MINUS
+        ___       &kp Q               &kp W           &cmt LA(LS(N2)) E  &kp R              &kp T   &none                                                                 &none        &kp Y   &umlaut_tap_ue U U  &kp I             &umlaut_tap_oe O O  &kp P     &kp BSLH
+        &kp TAB   &umlaut_tap_ae A A  &cmt LA(S) S    &hm_l SYS D        &hm_l APP F        &kp G   &kp TAB         &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL                &kp BSPC     &kp H   &kp J               &kp K             &kp L               &hm_r SYS SEMI  &kp SQT
+        &kp LSHFT &kp Z               &kp X           &kp C              &hm_l NUM V        &kp B                             &kp HOME &kp PG_UP                                       &kp N   &hm_r APP M         &hm_r SYS COMMA   &kp DOT             &kp FSLH  &kp RSHFT
+        &mo FN    &kp GRAVE           &kp CAPS        &kp LEFT           &kp RIGHT                  &lt TEXT BSPC  &kp LSHIFT &none    &kp PG_DN &mt LCTRL ENTER &lt SYMBOL SPACE &kp BSPC        &kp DOWN         &kp LBKT      &kp RBKT  &mo FN
       >;
     };
 
@@ -141,7 +232,7 @@
     sys_layer {
       bindings = <
         ___            &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4)    &kp LG(N5)     ___                                           ___             &kp LG(N6)     &kp LG(N7)     &kp LG(N8)    &kp LG(N9)   &kp LG(N0)    &kp LG(LS(P))
-        ___            &kp LG(Q)  &kp LG(W)  &kp LG(E)  &kp LG(R)     &kp LG(T)      &kp LA(LS(N3))                                ___             &kp LG(Y)      &kp LG(U)      &kp LG(I)     &kp LG(O)    &kp LG(P)     &kp LG(BSLH)
+        ___            &kp LG(Q)  &kp LG(W)  &kp LG(E)  &kp LG(R)     &kp LG(T)      &kp LA(LS(N3))                                ___             &kp LG(Y)      &kp LG(U)      &kp LG(I)     &sl ALFRED   &kp LG(P)     &kp LG(BSLH)
         ___            &kp LG(A)  &kp LG(S)  &kp LG(D)  &kp LG(F)     &kp LG(G)      &kp LA(LS(N4))         ___ ___ ___ ___        &kp LA(LS(N5))  &kp LG(H)      &kp LG(J)    &kp LG(K)     &kp LG(L)    &kp LG(COLON) &kp LG(FSLH)
         ___            &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)     &kp LG(B)                                 ___ ___                            &kp LG(N)      &kp LG(M)      &kp LG(COMMA) &kp LG(DOT)  &kp LG(SLASH) ___
         ___            ___        ___        ___        ___                                            ___ ___  ___ ___  ___ &kp LG(TAB)                          ___            ___           ___          ___           ___
@@ -152,7 +243,7 @@
       bindings = <
         ___            ___            ___             ___             ___       ___            ___                                    ___             ___            ___            ___           ___              ___           ___
         ___            ___            &kp UNDER       &mt LA(E) LBKT  &kp RBKT  &kp CARET      ___                                    ___             &kp EXCL       &mt LA(U) LT   &kp GT        &mt LA(O) EQUAL  &kp AMPS      ___ 
-        ___            &mt LA(A) BSLH &mt LA(S) FSLH  &kp LBRC        &kp RBRC  &kp STAR       ___         ___ ___ ___ ___            ___             &kp QMARK      &kp LPAR       &kp RPAR      &kp MINUS        &kp COLON     &kp AT 
+        ___            &kp BSLH       &mt LA(S) FSLH  &kp LBRC        &kp RBRC  &kp STAR       ___         ___ ___ ___ ___            ___             &kp QMARK      &kp LPAR       &kp RPAR      &kp MINUS        &kp COLON     &kp AT 
         ___            &kp HASH       &kp DOLLAR      &kp PIPE        &kp TILDE &kp GRAVE                      ___ ___                                &kp PLUS       &kp PERCENT    &kp DQT       &kp SQT          &kp SEMI      ___
         ___            ___            ___             ___             ___                             ___ ___  ___ ___  ___ ___                                      ___            ___           ___              ___           ___
       >;
@@ -160,11 +251,11 @@
 
     text_layer {
       bindings = <
-        ___            &kp LG(N1)     &kp LG(N2)      &kp LG(N3)      &kp LG(N4)     &kp LG(N5)             ___                                    ___             &kp LG(N6)     &kp LG(N7)     &kp LG(N8)    &kp LG(N9)       &kp LG(N0)   &kp LG(LS(P))
-        ___            ___            ___             &kp END         &kp LC(R)      &kp LG(LC(LA(LS(T))))  ___                                    ___             &kp LC(K)      &kp LG(BSPC)   &kp UP        &kp LG(O)        ___      ___ 
-        ___            &kp HOME       &kp LA(BSPC)    &kp LA(DELETE)  &kp LA(RIGHT)  ___                    ___         ___ ___ ___ ___            ___             ___            &kp LEFT       &kp DOWN      &kp RIGHT        ___      ___
-        ___            ___            &kp LG(X)       &kp LG(C)       &kp LG(V)      &kp LA(LEFT)                           ___ ___                                ___            &kp BSPC       &kp TAB       &kp LS(TAB)      ___      ___
-        ___            ___            ___             ___             ___                                          ___ ___  ___ ___  &kp ENTER &kp ESC             ___            ___           ___              ___      ___
+        ___            &kp LG(N1)     &kp LG(N2)      &kp LG(N3)      &kp LG(N4)                   &kp LG(N5)                 ___                                    ___             &kp LG(N6)     &kp LG(N7)     &kp LG(N8)    &kp LG(N9)       &kp LG(N0)   &kp LG(LS(P))
+        ___            ___            &select_word    &kp END         &kp LC(R)                    &delete_word               ___                                    ___             &kp LC(K)      &kp LG(BSPC)   &kp UP        &kp LG(O)        ___      ___ 
+        ___            &kp HOME       &kp LA(BSPC)    &kp LA(DELETE)  &mt LA(LS(RIGHT)) LA(RIGHT)  ___                        ___                  ___ ___ ___ ___   ___             ___            &kp LEFT       &kp DOWN      &kp RIGHT        ___      ___
+        ___            ___            &kp LG(X)       &kp LG(C)       &kp LG(V)                    &mt LA(LS(LEFT)) LA(LEFT)                           ___ ___                                ___            &kp BSPC       &kp TAB       &kp LS(TAB)      ___      ___
+        ___            ___            ___             ___             ___                                                                     ___ ___  ___ ___  &kp ENTER &kp ESC             ___            ___           ___              ___      ___
       >;
     };
 
@@ -220,6 +311,18 @@
         &none &none        &none        &none        &none                                       &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG                                     &bl BL_INC   &bl BL_DEC   &none &none &none
       >;
     };
+
+    alfred {
+      display-name = "Alfred";
+      bindings = <
+        &kp F1 &kp F2 &kp F3            &kp F4            &kp F5            &kp F6  &tog 1                                          &mo 3 &kp F7 &kp F8            &kp F9            &kp F10 &kp F11 &kp F12
+        &trans &trans &kp LG(LA(LS(W))) &trans            &trans            &trans  &none                                           &none &trans &trans            &trans            &trans  &trans  &trans
+        &trans &trans &trans            &kp LG(LA(LS(D))) &trans            &trans  &none        &trans &trans &trans &trans        &none &trans &trans            &trans            &trans  &trans  &trans
+        &trans &trans &trans            &kp LG(LA(LS(C))) &kp LG(LA(LS(V))) &trans                      &trans &trans                     &kp LG(LA(LS(N)))        &kp LG(LA(LS(M))) &trans  &trans  &trans  &trans
+        &trans &trans &trans            &trans            &trans               &trans &trans &trans &trans &trans &trans                                           &trans            &trans  &trans  &trans  &trans
+      >;
+    };
+
     extra1 { 
       display-name = "Red";    
       status = "reserved";
