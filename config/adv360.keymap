@@ -136,13 +136,6 @@
           // hold-trigger-on-release;
       };
 
-      td0: tap_dance_0 {
-          compatible = "zmk,behavior-tap-dance";
-          #binding-cells = <0>;
-          tapping-term-ms = <200>;
-          bindings = <&kp LA(D)>, <&kp LA(LS(D))>, <&kp LG(LA(LS(D)))>;
-      };
-
       umlaut_ae: umlaut_ae {
           compatible = "zmk,behavior-mod-morph";
           #binding-cells = <0>;
@@ -222,9 +215,9 @@
     app_layer {
       bindings = <
         ___            ___        ___        ___        ___           ___            ___                                    ___             ___             ___            ___           ___          ___           ___
-        ___            &kp LA(Q)  &kp LA(W)  &kp LA(E)  &kp LA(R)     &kp LA(T)      ___                                    ___             &kp LA(Y)       &kp LA(U)      &kp LA(I)     &kp LA(O)    &kp LA(P)     &kp LA(BSLH)
-        ___            &kp LA(A)  &kp LA(S)  &td0       &kp LA(F)     &kp LA(G)      ___         ___ ___ ___ ___            ___             &kp LA(H)       &kp LA(J)      &kp LA(K)     &kp LA(L)    &kp LA(COLON) &kp LA(FSLH)
-        ___            &kp LA(Z)  &kp LA(X)  &kp LA(C)  &kp LA(V)     &kp LA(B)                      ___ ___                                &mt LG(N) LA(N) &kp LA(M)      &kp LA(COMMA) &kp LA(DOT)  &kp LA(SLASH) ___
+        ___            &kp LG(LC(Q))  &kp LG(LC(W))  &kp LG(LC(E))  &kp LG(LC(R))     &kp LG(LC(T))      ___                                    ___             &kp LG(LC(Y))       &kp LG(LC(U))      &kp LG(LC(I))     &kp LG(LC(O))    &kp LG(LC(P))     &kp LG(LC(BSLH))
+        ___            &kp LG(LC(A))  &kp LG(LC(S))  &kp LG(LC(D))  &kp LG(LC(F))     &kp LG(LC(G))      ___         ___ ___ ___ ___            ___             &kp LG(LC(H))       &kp LG(LC(J))      &kp LG(LC(K))     &kp LG(LC(L))    &kp LG(LC(COLON)) &kp LG(LC(FSLH))
+        ___            &kp LG(LC(Z))  &kp LG(LC(X))  &kp LG(LC(C))  &kp LG(LC(V))     &kp LG(LC(B))                      ___ ___                                &kp LG(LC(N))       &kp LG(LC(M))      &kp LG(LC(COMMA)) &kp LG(LC(DOT))  &kp LG(LC(SLASH)) ___
         ___            ___        ___        ___        ___                                 ___ ___  ___ ___  ___ ___                                       ___            ___           ___          ___           ___
       >;
     };
