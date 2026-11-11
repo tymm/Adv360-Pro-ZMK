@@ -206,9 +206,9 @@
       bindings = <
         &kp ESC   &kp N1              &kp N2          &kp N3             &kp N4             &kp N5  &tog WINDOWS                                                          &mo MOD      &kp N6  &kp N7              &kp N8            &kp N9              &kp N0    &kp MINUS
         ___       &kp Q               &kp W           &cmt LA(LS(N2)) E  &kp R              &kp T   &none                                                                 &none        &kp Y   &umlaut_tap_ue U U  &kp I             &umlaut_tap_oe O O  &kp P     &kp BSLH
-        &kp TAB   &umlaut_tap_ae A A  &cmt LA(S) S    &hm_l SYS D        &hm_l APP F        &kp G   &kp TAB         &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL                &kp BSPC     &kp H   &kp J               &kp K             &kp L               &hm_r SYS SEMI  &kp SQT
-        &kp LSHFT &kp Z               &kp X           &kp C              &hm_l NUM V        &kp B                             &kp HOME &kp PG_UP                                       &kp N   &hm_r APP M         &hm_r SYS COMMA   &kp DOT             &kp FSLH  &kp RSHFT
-        &mo FN    &kp GRAVE           &kp CAPS        &kp LEFT           &kp RIGHT                  &lt TEXT BSPC  &kp LSHIFT &none    &kp PG_DN &mt LCTRL ENTER &lt SYMBOL SPACE &kp BSPC        &kp DOWN         &kp LBKT      &kp RBKT  &mo FN
+        &kp TAB   &umlaut_tap_ae A A  &cmt LA(S) S    &kp D              &kp F              &kp G   &kp TAB         &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL                &kp BSPC     &kp H   &kp J               &kp K             &kp L               &hm_r SYS SEMI  &kp SQT
+        &kp LSHFT &kp Z               &kp X           &kp C              &kp V              &kp B                             &kp HOME &kp PG_UP                                       &kp N   &kp M               &kp COMMA         &kp DOT             &kp FSLH  &kp RSHFT
+        &mo FN    &kp GRAVE           &mo NUM         &mo SYS            &mo APP                    &lt TEXT BSPC  &kp LSHIFT &none    &kp PG_DN &mt LCTRL ENTER &lt SYMBOL SPACE &mo APP         &mo SYS          &kp LBKT      &kp RBKT  &mo FN
       >;
     };
 
